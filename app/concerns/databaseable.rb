@@ -18,9 +18,9 @@ module Databaseable
 
     def create_table
       column_attributes = self.attributes.map do |attribute_name, attribute_characteristic|
-        "#{attribute_name.to_s} #{attribute_characteristic}" 
+        "#{attribute_name.to_s} #{attribute_characteristic}"
       end.join(", ")
-      
+
       sql = <<-SQL
         CREATE TABLE IF NOT EXISTS #{self.table_name} (
           #{column_attributes}
@@ -62,23 +62,23 @@ module Databaseable
       rows.map do |row|
         self.object_from_row(row)
       end
-    end    
+    end
 
     def object_from_row(row)
       public_values = row[1..-1]
       zipped = self.public_attributes.zip(public_values)
       hash = Hash[zipped]
-      
+
       object = self.new(hash)
 
       object.instance_variable_set("@id", row[0])
       object
-    end    
+    end
   end
   module InstanceMethods
     def initialize(attributes = {})
-      self.class.public_attributes.each do |attribute|  
-        self.send("#{attribute}=", attributes[attribute])  
+      self.class.public_attributes.each do |attribute|
+        self.send("#{attribute}=", attributes[attribute])
       end
     end
 
@@ -114,7 +114,7 @@ module Databaseable
     end
   end
 
-  private 
+  private
 
   # ATTRIBUTES = {
   #   id: "INTEGER PRIMARY KEY",

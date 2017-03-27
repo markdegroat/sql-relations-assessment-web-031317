@@ -26,6 +26,10 @@ Here, we have a different Yelp-style application. We need customers, restaurants
     ### author
     id | name |
 
+    MY DOMAIN MODEL
+
+
+
 2. As a second step, please fill in the stubbed out methods in the respective model. The important thing here is to know what SQL will fire to select the data you're looking for. For example, if I want a method called 'author' for my `Book` class, it might look something like this.
 
 ```ruby

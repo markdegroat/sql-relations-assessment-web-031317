@@ -7,7 +7,7 @@ require_relative '../config/environment.rb'
 end
 customers = (1..10).to_a.map do |num|
 
-  customer = Customer.new(name: Faker::Book.author, 
+  customer = Customer.new(name: Faker::Book.author,
         birth_year: rand(1920..1990),
         hometown: Faker::Address.city)
 end
@@ -18,7 +18,7 @@ end
 
 owners = (1..10).to_a.map do |num|
 
-  owner = Owner.new(name: Faker::Book.author, 
+  owner = Owner.new(name: Faker::Book.author,
         birth_year: rand(1920..1990),
         hometown: Faker::Address.city)
 end
@@ -41,7 +41,7 @@ end
 restaurant_ids = Restaurant.all.map { |g| g.id }.cycle.each
 
 reviews = Customer.all.map.with_index(1) do |customer, index|
-  
+
   restaurant_id = restaurant_ids.next
   review = Review.new(restaurant_id: restaurant_id, customer_id: customer.id)
   restaurant_id = restaurant_ids.next
@@ -52,4 +52,3 @@ end.flatten
 reviews.each do |gb|
   gb.save
 end
-
